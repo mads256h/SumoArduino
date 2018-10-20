@@ -1,13 +1,9 @@
 #include "MotorController.h"
 
 
-MotorController::MotorController(const uint8_t _A01Pin, const uint8_t _A02Pin, const uint8_t _B01Pin, const uint8_t _B02Pin)
-{
-	A01Pin = _A01Pin;
-	A02Pin = _A02Pin;
-	B01Pin = _B01Pin;
-	B02Pin = _B02Pin;
-}
+MotorController::MotorController(const uint8_t a01Pin, const uint8_t a02Pin, const uint8_t b01Pin, const uint8_t b02Pin)
+	: A01Pin(a01Pin), A02Pin(a02Pin), B01Pin(b01Pin), B02Pin(b02Pin)
+{ }
 
 void MotorController::Begin() const
 {
@@ -28,7 +24,6 @@ void MotorController::Start() const
 	Rotate(180);
 	Brake();
 }
-
 
 void MotorController::Freewheel() const
 {

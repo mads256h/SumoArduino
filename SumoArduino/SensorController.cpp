@@ -1,24 +1,30 @@
 #include "SensorController.h"
+#include <Servo.h>
 
 
-SensorController::SensorController(const uint8_t servoPin, const uint8_t echoPin, const uint8_t trigPin)
+void SensorController::Motor1TripInterrupt()
 {
-	ServoPin = servoPin;
-	EchoPin = echoPin;
-	TrigPin = trigPin;
-	ServoController = Servo();
-	Motor = nullptr;
-	ClockWise = false;
-	Angle = 0;
+	Motor1TripCounter++;
 }
 
-void SensorController::Begin(const MotorController* const  motor)
+void SensorController::Motor2TripInterrupt()
+{
+	Motor2TripCounter++;
+}
+
+SensorController::SensorController(const uint8_t servoPin, const uint8_t echoPin, const uint8_t trigPin)
+	: ServoPin(servoPin), EchoPin(echoPin), TrigPin(trigPin), ServoController(Servo()), Motor(nullptr), ClockWise(false), Angle(0)
+{ }
+
+void SensorController::Begin(const MotorController* const motor)
 {
 	pinMode(ServoPin, OUTPUT);
 	pinMode(EchoPin, INPUT);
 	pinMode(TrigPin, OUTPUT);
 	ServoController.attach(ServoPin);
 	Motor = motor;
+	attachInterrupt(digitalPinToInterrupt(2), Motor1TripInterrupt, CHANGE);
+	attachInterrupt(digitalPinToInterrupt(3), Motor2TripInterrupt, CHANGE);
 }
 
 uint32_t SensorController::ReadDistance() const
@@ -68,7 +74,9 @@ void SensorController::Loop()
 		Angle += 10;
 
 	if (ClockWise)
-		Angle-= 10;
+		Angle -= 10;
 
 }
 
+volatile uint32_t SensorController::Motor1TripCounter = 0;
+volatile uint32_t SensorController::Motor2TripCounter = 0;

@@ -4,18 +4,14 @@
 class MotorController
 {
 private:
-	uint8_t A01Pin;
-	uint8_t A02Pin;
-	uint8_t B01Pin;
-	uint8_t B02Pin;
+	const uint8_t A01Pin;
+	const uint8_t A02Pin;
+	const uint8_t B01Pin;
+	const uint8_t B02Pin;
 
 public:
-	static const uint16_t DELAY_15_CONSTANT = 100;
-	static const uint16_t DELAY_45_CONSTANT = 200;
-	static const uint16_t DELAY_90_CONSTANT = 320;
-	static const uint16_t DELAY_180_CONSTANT = 500;
 
-	MotorController(const uint8_t _A01Pin, const uint8_t _A02Pin, const uint8_t _B01Pin, const uint8_t _B02Pin);
+	MotorController(const uint8_t a01Pin, const uint8_t a02Pin, const uint8_t b01Pin, const uint8_t b02Pin);
 
 	void Begin() const;
 
