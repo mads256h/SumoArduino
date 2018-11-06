@@ -21,13 +21,13 @@ private:
 	//Our own motor controller class.
 	const MotorController* Motor;
 
-	volatile static uint32_t Motor1TripCounter;
-	volatile static uint32_t Motor2TripCounter;
-
 	static void Motor1TripInterrupt();
 	static void Motor2TripInterrupt();
 
 public:
+	volatile static uint32_t Motor1TripCounter;
+	volatile static uint32_t Motor2TripCounter;
+
 	bool ClockWise;
 	uint8_t Angle;
 

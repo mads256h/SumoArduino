@@ -1,10 +1,12 @@
 #include "SensorController.h"
 #include <Servo.h>
+#include "Util.h"
 
 
 void SensorController::Motor1TripInterrupt()
 {
 	Motor1TripCounter++;
+	//Println("Motor1");
 }
 
 void SensorController::Motor2TripInterrupt()
@@ -23,6 +25,10 @@ void SensorController::Begin(const MotorController* const motor)
 	pinMode(TrigPin, OUTPUT);
 	ServoController.attach(ServoPin);
 	Motor = motor;
+
+	pinMode(2, INPUT);
+	pinMode(3, INPUT);
+
 	attachInterrupt(digitalPinToInterrupt(2), Motor1TripInterrupt, CHANGE);
 	attachInterrupt(digitalPinToInterrupt(3), Motor2TripInterrupt, CHANGE);
 }

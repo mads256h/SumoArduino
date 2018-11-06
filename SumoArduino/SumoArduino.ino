@@ -32,7 +32,7 @@ SensorController controller(3, 4, 5);
 void setup() {
 	const MotorController* const motorController = new MotorController(9, 8, 10, 11);
 
-#ifdef _DEBUG
+#if 1
 	Serial.begin(115200);
 #endif
 	Println("Begin program");
@@ -44,6 +44,10 @@ void setup() {
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-	controller.Loop();
+	Println(SensorController::Motor1TripCounter);
+	Println(SensorController::Motor2TripCounter);
+	//Serial.println(digitalRead(2));
+	//Serial.println(digitalRead(3));
+	//controller.Loop();
 	
 }
