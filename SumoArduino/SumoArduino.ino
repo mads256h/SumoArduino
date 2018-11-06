@@ -1,8 +1,10 @@
 //_DEBUG is for visual studio vMicro only. So we define it here if it does not exist
 #ifndef _VMICRO_INTELLISENSE
+
 #define _DEBUG 0
 #endif
 
+#include <Servo.h>
 #include <SensorController.h>
 #include <MotorController.h>
 #include "Util.h"
