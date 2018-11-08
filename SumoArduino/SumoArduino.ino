@@ -21,9 +21,7 @@ SensorController controller(3, 4, 5);
 void setup() {
 	const MotorController* const motorController = new MotorController(9, 8, 10, 11);
 
-#if DEBUG
-	Serial.begin(115200);
-#endif
+	InitializeSerial(115200);
 	Println("Begin program");
 	controller.Begin(motorController);
 	motorController->Begin();
