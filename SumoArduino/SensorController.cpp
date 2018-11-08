@@ -1,7 +1,7 @@
 /*
  Name:		SensorController.cpp
  Created:	8/11/2018 16:47:16
- Edited:	8/11/2018 16:52:46
+ Edited:	8/11/2018 17:00:10
  Author:	Mads
  Purpose:	Interface implementation for the sensor controller.
 */
@@ -9,6 +9,7 @@
 #include "SensorController.h"
 #include <Servo.h>
 #include "Util.h"
+#include "Pins.h"
 
 
 void SensorController::MotorATripInterrupt()
@@ -22,16 +23,16 @@ void SensorController::MotorBTripInterrupt()
 }
 
 SensorController::SensorController(const uint8_t servoPin, const uint8_t echoPin, const uint8_t trigPin)
-	: ServoPin(servoPin), EchoPin(echoPin), TrigPin(trigPin), servo(Servo()), Motor(nullptr), ClockWise(false), Angle(0)
+	: _servoPin(servoPin), _echoPin(echoPin), _trigPin(trigPin), _servo(Servo()), _motor(nullptr), ClockWise(false), Angle(0)
 { }
 
 void SensorController::Begin(const MotorController* const motor)
 {
-	pinMode(ServoPin, OUTPUT);
-	pinMode(EchoPin, INPUT);
-	pinMode(TrigPin, OUTPUT);
-	servo.attach(ServoPin);
-	Motor = motor;
+	pinMode(_servoPin, OUTPUT);
+	pinMode(_echoPin, INPUT);
+	pinMode(_trigPin, OUTPUT);
+	_servo.attach(_servoPin);
+	_motor = motor;
 
 	pinMode(Pins::MOTOR1_TRIP, INPUT);
 	pinMode(Pins::MOTOR2_TRIP, INPUT);
@@ -42,13 +43,13 @@ void SensorController::Begin(const MotorController* const motor)
 
 uint32_t SensorController::ReadDistance(const unsigned long timeout) const
 {
-	digitalWrite(TrigPin, LOW);
+	digitalWrite(_trigPin, LOW);
 	delayMicroseconds(2);
-	digitalWrite(TrigPin, HIGH);
+	digitalWrite(_trigPin, HIGH);
 	delayMicroseconds(10);
-	digitalWrite(TrigPin, LOW);
+	digitalWrite(_trigPin, LOW);
 
-	return pulseIn(EchoPin, HIGH, timeout);
+	return pulseIn(_echoPin, HIGH, timeout);
 }
 
 void SensorController::Loop()
@@ -59,7 +60,7 @@ void SensorController::Loop()
 	if (Angle > 170)
 		ClockWise = true;
 
-	servo.write(Angle);
+	_servo.write(Angle);
 
 
 	const auto distance = ReadDistance();
@@ -68,18 +69,18 @@ void SensorController::Loop()
 	{
 		if (Angle < 100 && Angle > 80)
 		{
-			Motor->Forward();
+			_motor->Forward();
 			delay(60);
 		}
 		else
 		{
-			Motor->Rotate(Angle - 90);
+			_motor->Rotate(Angle - 90);
 			Angle = 90;
 		}
 
 		return;
 	}
-	Motor->Brake();
+	_motor->Brake();
 	delay(60);
 
 

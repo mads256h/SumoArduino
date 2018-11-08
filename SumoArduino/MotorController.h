@@ -1,7 +1,7 @@
 /*
  Name:		MotorController.h
  Created:	8/11/2018 16:48:00
- Edited:	8/11/2018 16:51:55
+ Edited:	8/11/2018 17:01:42
  Author:	Mads
  Purpose:	Interface definition for the motor controller.
 */
@@ -13,16 +13,16 @@
 class MotorController
 {
 private:
-	const uint8_t A01Pin;
-	const uint8_t A02Pin;
-	const uint8_t B01Pin;
-	const uint8_t B02Pin;
+	const uint8_t _motorAControl1Pin;
+	const uint8_t _motorAControl2Pin;
+	const uint8_t _motorBControl1Pin;
+	const uint8_t _motorBControl2Pin;
 
 public:
 
 	//Constructs a MotorController object. It takes two pins
 	//per motor.
-	MotorController(const uint8_t a01Pin, const uint8_t a02Pin, const uint8_t b01Pin, const uint8_t b02Pin);
+	MotorController(const uint8_t motorAControl1Pin, const uint8_t motorAControl2Pin, const uint8_t motorBControl1Pin, const uint8_t motorBControl2Pin);
 
 	//We need to have a begin function to be called in setup,
 	//because the constructor runs before any other code and

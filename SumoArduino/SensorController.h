@@ -17,17 +17,17 @@ class SensorController
 {
 private:
 	//Pin for the servo motor.
-	const uint8_t ServoPin;
+	const uint8_t _servoPin;
 
 	//Echo and trigger pins for the sonic distance sensor.
-	const uint8_t EchoPin;
-	const uint8_t TrigPin;
+	const uint8_t _echoPin;
+	const uint8_t _trigPin;
 
 	//Servo controller library class
-	Servo servo;
+	Servo _servo;
 
 	//Our own motor controller class.
-	const MotorController* Motor;
+	const MotorController* _motor;
 
 
 	//Interrupt function for the first motor.

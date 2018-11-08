@@ -1,7 +1,7 @@
 /*
  Name:		MotorController.cpp
  Created:	8/11/2018 16:48:32
- Edited:	8/11/2018 16:53:00
+ Edited:	8/11/2018 17:01:23
  Author:	Mads
  Purpose:	Interface implementation for the motor controller.
 */
@@ -10,15 +10,15 @@
 
 
 MotorController::MotorController(const uint8_t a01Pin, const uint8_t a02Pin, const uint8_t b01Pin, const uint8_t b02Pin)
-	: A01Pin(a01Pin), A02Pin(a02Pin), B01Pin(b01Pin), B02Pin(b02Pin)
+	: _motorAControl1Pin(a01Pin), _motorAControl2Pin(a02Pin), _motorBControl1Pin(b01Pin), _motorBControl2Pin(b02Pin)
 { }
 
 void MotorController::Begin() const
 {
-	pinMode(A01Pin, OUTPUT);
-	pinMode(A02Pin, OUTPUT);
-	pinMode(B01Pin, OUTPUT);
-	pinMode(B02Pin, OUTPUT);
+	pinMode(_motorAControl1Pin, OUTPUT);
+	pinMode(_motorAControl2Pin, OUTPUT);
+	pinMode(_motorBControl1Pin, OUTPUT);
+	pinMode(_motorBControl2Pin, OUTPUT);
 
 	Brake();
 }
@@ -35,69 +35,69 @@ void MotorController::Start() const
 
 void MotorController::Freewheel() const
 {
-	digitalWrite(A01Pin, LOW);
-	digitalWrite(A02Pin, LOW);
-	digitalWrite(B01Pin, LOW);
-	digitalWrite(B02Pin, LOW);
+	digitalWrite(_motorAControl1Pin, LOW);
+	digitalWrite(_motorAControl2Pin, LOW);
+	digitalWrite(_motorBControl1Pin, LOW);
+	digitalWrite(_motorBControl2Pin, LOW);
 }
 
 void MotorController::Brake() const
 {
-	digitalWrite(A01Pin, HIGH);
-	digitalWrite(A02Pin, HIGH);
-	digitalWrite(B01Pin, HIGH);
-	digitalWrite(B02Pin, HIGH);
+	digitalWrite(_motorAControl1Pin, HIGH);
+	digitalWrite(_motorAControl2Pin, HIGH);
+	digitalWrite(_motorBControl1Pin, HIGH);
+	digitalWrite(_motorBControl2Pin, HIGH);
 }
 
 void MotorController::Forward() const
 {
-	digitalWrite(A01Pin, HIGH);
-	digitalWrite(A02Pin, LOW);
-	digitalWrite(B01Pin, HIGH);
-	digitalWrite(B02Pin, LOW);
+	digitalWrite(_motorAControl1Pin, HIGH);
+	digitalWrite(_motorAControl2Pin, LOW);
+	digitalWrite(_motorBControl1Pin, HIGH);
+	digitalWrite(_motorBControl2Pin, LOW);
 }
 
 void MotorController::TurnLeft() const
 {
-	digitalWrite(A01Pin, HIGH);
-	digitalWrite(A02Pin, LOW);
-	digitalWrite(B01Pin, HIGH);
-	digitalWrite(B02Pin, HIGH);
+	digitalWrite(_motorAControl1Pin, HIGH);
+	digitalWrite(_motorAControl2Pin, LOW);
+	digitalWrite(_motorBControl1Pin, HIGH);
+	digitalWrite(_motorBControl2Pin, HIGH);
 }
 
 void MotorController::TurnRight() const
 {
-	digitalWrite(A01Pin, HIGH);
-	digitalWrite(A02Pin, HIGH);
-	digitalWrite(B01Pin, HIGH);
-	digitalWrite(B02Pin, LOW);
+	digitalWrite(_motorAControl1Pin, HIGH);
+	digitalWrite(_motorAControl2Pin, HIGH);
+	digitalWrite(_motorBControl1Pin, HIGH);
+	digitalWrite(_motorBControl2Pin, LOW);
 }
 
 void MotorController::Backwards() const
 {
-	digitalWrite(A01Pin, LOW);
-	digitalWrite(A02Pin, HIGH);
-	digitalWrite(B01Pin, LOW);
-	digitalWrite(B02Pin, HIGH);
+	digitalWrite(_motorAControl1Pin, LOW);
+	digitalWrite(_motorAControl2Pin, HIGH);
+	digitalWrite(_motorBControl1Pin, LOW);
+	digitalWrite(_motorBControl2Pin, HIGH);
 }
 
 void MotorController::Rotate(const int16_t angle) const
 {
 	if (angle > 0)
 	{
-		digitalWrite(A01Pin, LOW);
-		digitalWrite(A02Pin, HIGH);
-		digitalWrite(B01Pin, HIGH);
-		digitalWrite(B02Pin, LOW);
+		digitalWrite(_motorAControl1Pin, LOW);
+		digitalWrite(_motorAControl2Pin, HIGH);
+		digitalWrite(_motorBControl1Pin, HIGH);
+		digitalWrite(_motorBControl2Pin, LOW);
 		delay(17.123 * pow(angle, 0.6494));
 		Brake();
 	}
 	else
 	{
-		digitalWrite(A01Pin, HIGH);
-		digitalWrite(A02Pin, LOW);
-		digitalWrite(B01Pin, LOW);
-		digitalWrite(B02Pin, HIGH);
+		digitalWrite(_motorAControl1Pin, HIGH);
+		digitalWrite(_motorAControl2Pin, LOW);
+		digitalWrite(_motorBControl1Pin, LOW);
+		digitalWrite(_motorBControl2Pin, HIGH);
 		delay(17.123 * pow(abs(angle), 0.6494));
 		Brake();
 	}
