@@ -4,7 +4,8 @@
 #include <Servo.h>
 #include "MotorController.h"
 
-
+//Class that controls the sensor and feeds instructions
+//to the MotorController.
 class SensorController
 {
 private:
@@ -16,27 +17,45 @@ private:
 	const uint8_t TrigPin;
 
 	//Servo controller library class
-	Servo ServoController;
+	Servo servo;
 
 	//Our own motor controller class.
 	const MotorController* Motor;
 
-	static void Motor1TripInterrupt();
-	static void Motor2TripInterrupt();
+
+	//Interrupt function for the first motor.
+	static void MotorATripInterrupt();
+	//Interrupt function for the second motor.
+	static void MotorBTripInterrupt();
 
 public:
-	volatile static uint32_t Motor1TripCounter;
-	volatile static uint32_t Motor2TripCounter;
+	//How many times motor A trip has triggered.
+	volatile static uint32_t MotorATripCounter;
+	//How many times motor B trip has triggered.
+	volatile static uint32_t MotorBTripCounter;
 
+	//Do we turn the ultrasonic sensor clockwise?
 	bool ClockWise;
+
+	//The current angle of the sensor.
 	uint8_t Angle;
 
+	//Constructs a SensorController object it takes servo
+	//and ultra sonic sensor pins.
 	SensorController(const uint8_t servoPin, const uint8_t echoPin, const uint8_t trigPin);
 
+	//We need to have a begin function to be called in setup,
+	//because the constructor runs before any other code and
+	//we depend on setup code in the hidden main function to
+	//setup interrupts and ports. It takes a MotorController
+	//pointer.
 	void Begin(const MotorController* const motor);
 
-	uint32_t ReadDistance() const;
+	//Read a distance from the ultrasonic sensor. This
+	//value is not in any unit, but it is linear.
+	uint32_t ReadDistance(const unsigned long timeout = 20000UL) const;
 
+	//The sensor loop. Place this in the loop function.
 	void Loop();
 
 };

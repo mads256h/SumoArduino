@@ -1,7 +1,7 @@
 #pragma once
 #include <Arduino.h>
 
-#if 1
+#if DEBUG
 #define Print(t) Serial.print(t)
 #define Println(t) Serial.println(t)
 #else

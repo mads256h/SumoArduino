@@ -1,8 +1,6 @@
-//_DEBUG is for visual studio vMicro only. So we define it here if it does not exist
-#ifndef _VMICRO_INTELLISENSE
-
-#define _DEBUG 0
-#endif
+//When DEBUG is 1 the Arduino sends serial data using the Print macros.
+//When its 0 the Print macros are just noops.
+#define DEBUG 1
 
 #include <Servo.h>
 #include <SensorController.h>
@@ -15,17 +13,6 @@
  Author:	Mads
 */
 
-//Pins that support pwm: 3, 5, 6, 9, 10, 11
-//We need four pins for the motors.
-
-constexpr uint8_t Motor1Pin1 = 6;
-constexpr uint8_t Motor1Pin2 = 9;
-
-constexpr uint8_t Motor2Pin1 = 10;
-constexpr uint8_t Motor2Pin2 = 11;
-
-//We need 6 pins for the 3 sensors: 2*3
-//Available pins: 0, 1, 2, 3, 4, 5, 7, 8, 12, 13
 
 SensorController controller(3, 4, 5);
 
@@ -34,7 +21,7 @@ SensorController controller(3, 4, 5);
 void setup() {
 	const MotorController* const motorController = new MotorController(9, 8, 10, 11);
 
-#if 1
+#if DEBUG
 	Serial.begin(115200);
 #endif
 	Println("Begin program");
@@ -46,8 +33,8 @@ void setup() {
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-	Println(SensorController::Motor1TripCounter);
-	Println(SensorController::Motor2TripCounter);
+	Println(SensorController::MotorATripCounter);
+	Println(SensorController::MotorBTripCounter);
 	//Serial.println(digitalRead(2));
 	//Serial.println(digitalRead(3));
 	//controller.Loop();

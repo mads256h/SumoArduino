@@ -3,19 +3,19 @@
 #include "Util.h"
 
 
-void SensorController::Motor1TripInterrupt()
+void SensorController::MotorATripInterrupt()
 {
-	Motor1TripCounter++;
+	MotorATripCounter++;
 	//Println("Motor1");
 }
 
-void SensorController::Motor2TripInterrupt()
+void SensorController::MotorBTripInterrupt()
 {
-	Motor2TripCounter++;
+	MotorBTripCounter++;
 }
 
 SensorController::SensorController(const uint8_t servoPin, const uint8_t echoPin, const uint8_t trigPin)
-	: ServoPin(servoPin), EchoPin(echoPin), TrigPin(trigPin), ServoController(Servo()), Motor(nullptr), ClockWise(false), Angle(0)
+	: ServoPin(servoPin), EchoPin(echoPin), TrigPin(trigPin), servo(Servo()), Motor(nullptr), ClockWise(false), Angle(0)
 { }
 
 void SensorController::Begin(const MotorController* const motor)
@@ -23,17 +23,17 @@ void SensorController::Begin(const MotorController* const motor)
 	pinMode(ServoPin, OUTPUT);
 	pinMode(EchoPin, INPUT);
 	pinMode(TrigPin, OUTPUT);
-	ServoController.attach(ServoPin);
+	servo.attach(ServoPin);
 	Motor = motor;
 
 	pinMode(2, INPUT);
 	pinMode(3, INPUT);
 
-	attachInterrupt(digitalPinToInterrupt(2), Motor1TripInterrupt, CHANGE);
-	attachInterrupt(digitalPinToInterrupt(3), Motor2TripInterrupt, CHANGE);
+	attachInterrupt(digitalPinToInterrupt(2), MotorATripInterrupt, CHANGE);
+	attachInterrupt(digitalPinToInterrupt(3), MotorBTripInterrupt, CHANGE);
 }
 
-uint32_t SensorController::ReadDistance() const
+uint32_t SensorController::ReadDistance(const unsigned long timeout) const
 {
 	digitalWrite(TrigPin, LOW);
 	delayMicroseconds(2);
@@ -41,7 +41,7 @@ uint32_t SensorController::ReadDistance() const
 	delayMicroseconds(10);
 	digitalWrite(TrigPin, LOW);
 
-	return pulseIn(EchoPin, HIGH, 20000UL);
+	return pulseIn(EchoPin, HIGH, timeout);
 }
 
 void SensorController::Loop()
@@ -52,7 +52,7 @@ void SensorController::Loop()
 	if (Angle > 170)
 		ClockWise = true;
 
-	ServoController.write(Angle);
+	servo.write(Angle);
 
 
 	const auto distance = ReadDistance();
@@ -84,5 +84,5 @@ void SensorController::Loop()
 
 }
 
-volatile uint32_t SensorController::Motor1TripCounter = 0;
-volatile uint32_t SensorController::Motor2TripCounter = 0;
+volatile uint32_t SensorController::MotorATripCounter = 0;
+volatile uint32_t SensorController::MotorBTripCounter = 0;
