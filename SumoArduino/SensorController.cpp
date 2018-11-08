@@ -26,11 +26,11 @@ void SensorController::Begin(const MotorController* const motor)
 	servo.attach(ServoPin);
 	Motor = motor;
 
-	pinMode(2, INPUT);
-	pinMode(3, INPUT);
+	pinMode(Pins::MOTOR1_TRIP, INPUT);
+	pinMode(Pins::MOTOR2_TRIP, INPUT);
 
-	attachInterrupt(digitalPinToInterrupt(2), MotorATripInterrupt, CHANGE);
-	attachInterrupt(digitalPinToInterrupt(3), MotorBTripInterrupt, CHANGE);
+	attachInterrupt(digitalPinToInterrupt(Pins::MOTOR1_TRIP), MotorATripInterrupt, CHANGE);
+	attachInterrupt(digitalPinToInterrupt(Pins::MOTOR2_TRIP), MotorBTripInterrupt, CHANGE);
 }
 
 uint32_t SensorController::ReadDistance(const unsigned long timeout) const

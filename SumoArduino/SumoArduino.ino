@@ -8,6 +8,7 @@
 //When its 0 the Print macros are just noops.
 #define DEBUG 1
 
+// ReSharper disable once CppUnusedIncludeDirective
 #include <Servo.h> //Not used here, but deep library search fails if its not included.
 #include <SensorController.h>
 #include <MotorController.h>
