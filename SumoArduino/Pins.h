@@ -1,10 +1,10 @@
-/*
- Name:		Pins.h
- Created:	8/11/2018 16:50:10
- Edited:	8/11/2018 16:52:07
- Author:	Mads
- Purpose:	Defines pin constants.
-*/
+// Name:    Pins.h
+// Created: 08/11/2018 10:03
+// Edited:  08/11/2018 17:27
+// Author:  Mads
+// Purpose: Defines pin constants.
+// Made by Gruppe 5: Mads Bluhme, Frederik Schultz & Mads Beyer Mogensen
+
 
 #pragma once
 
@@ -23,6 +23,15 @@ namespace Pins
 	constexpr uint8_t MOTOR1_TRIP = 2;
 	constexpr uint8_t MOTOR2_TRIP = 3;
 
+	//Infrared sensors
+
+	constexpr uint8_t INFRA_TOP_LEFT = 0;
+	constexpr uint8_t INFRA_TOP_RIGHT = 0;
+	constexpr uint8_t INFRA_LEFT = 0;
+	constexpr uint8_t INFRA_RIGHT = 0;
+	constexpr uint8_t INFRA_BOTTOM_LEFT = 0;
+	constexpr uint8_t INFRA_BOTTOM_RIGHT = 0;
+
 
 	//Motor pins
 
@@ -31,5 +40,4 @@ namespace Pins
 
 	constexpr uint8_t MOTORB_CONTROL1 = 10;
 	constexpr uint8_t MOTORB_CONTROL2 = 11;
-	
 }

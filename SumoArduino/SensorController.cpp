@@ -1,10 +1,11 @@
-/*
- Name:		SensorController.cpp
- Created:	8/11/2018 16:47:16
- Edited:	8/11/2018 17:00:10
- Author:	Mads
- Purpose:	Interface implementation for the sensor controller.
-*/
+// Name:    SensorController.cpp
+// Created: 09/10/2018 09:27
+// Edited:  08/11/2018 17:27
+// Author:  Mads
+// Purpose: Interface implementation for the sensor controller.
+// Made by Gruppe 5: Mads Bluhme, Frederik Schultz & Mads Beyer Mogensen
+
+
 
 #include "SensorController.h"
 #include <Servo.h>

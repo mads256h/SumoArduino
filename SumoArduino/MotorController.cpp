@@ -1,16 +1,17 @@
-/*
- Name:		MotorController.cpp
- Created:	8/11/2018 16:48:32
- Edited:	8/11/2018 17:01:23
- Author:	Mads
- Purpose:	Interface implementation for the motor controller.
-*/
+// Name:    MotorController.cpp
+// Created: 09/10/2018 13:00
+// Edited:  08/11/2018 17:21
+// Author:  Mads
+// Purpose: Interface implementation for the motor controller.
+// Made by Gruppe 5: Mads Bluhme, Frederik Schultz & Mads Beyer Mogensen
+
+
 
 #include "MotorController.h"
 
 
-MotorController::MotorController(const uint8_t a01Pin, const uint8_t a02Pin, const uint8_t b01Pin, const uint8_t b02Pin)
-	: _motorAControl1Pin(a01Pin), _motorAControl2Pin(a02Pin), _motorBControl1Pin(b01Pin), _motorBControl2Pin(b02Pin)
+MotorController::MotorController(const uint8_t motorAControl1Pin, const uint8_t motorAControl2Pin, const uint8_t motorBControl1Pin, const uint8_t motorBControl2Pin)
+	: _motorAControl1Pin(motorAControl1Pin), _motorAControl2Pin(motorAControl2Pin), _motorBControl1Pin(motorBControl1Pin), _motorBControl2Pin(motorBControl2Pin)
 { }
 
 void MotorController::Begin() const

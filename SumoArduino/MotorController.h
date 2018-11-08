@@ -1,10 +1,9 @@
-/*
- Name:		MotorController.h
- Created:	8/11/2018 16:48:00
- Edited:	8/11/2018 17:01:42
- Author:	Mads
- Purpose:	Interface definition for the motor controller.
-*/
+// Name:    MotorController.h
+// Created: 09/10/2018 13:00
+// Edited:  08/11/2018 17:20
+// Author:  Mads
+// Purpose: Interface definition for the motor controller.
+// Made by Gruppe 5: Mads Bluhme, Frederik Schultz & Mads Beyer Mogensen
 
 #pragma once
 #include <Arduino.h>
@@ -22,7 +21,8 @@ public:
 
 	//Constructs a MotorController object. It takes two pins
 	//per motor.
-	MotorController(const uint8_t motorAControl1Pin, const uint8_t motorAControl2Pin, const uint8_t motorBControl1Pin, const uint8_t motorBControl2Pin);
+	MotorController(uint8_t motorAControl1Pin, uint8_t motorAControl2Pin, uint8_t motorBControl1Pin,
+	                uint8_t motorBControl2Pin);
 
 	//We need to have a begin function to be called in setup,
 	//because the constructor runs before any other code and
@@ -55,6 +55,5 @@ public:
 	void Backwards() const;
 
 	//Rotate the vehicle by an angle.
-	void Rotate(const int16_t angle) const;
+	void Rotate(int16_t angle) const;
 };
-
