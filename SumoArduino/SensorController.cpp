@@ -1,6 +1,7 @@
 /*
  Name:		SensorController.cpp
  Created:	8/11/2018 16:47:16
+ Edited:	8/11/2018 16:52:46
  Author:	Mads
  Purpose:	Interface implementation for the sensor controller.
 */

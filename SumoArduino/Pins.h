@@ -1,6 +1,7 @@
 /*
  Name:		Pins.h
  Created:	8/11/2018 16:50:10
+ Edited:	8/11/2018 16:52:07
  Author:	Mads
  Purpose:	Defines pin constants.
 */

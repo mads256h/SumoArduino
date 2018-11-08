@@ -1,6 +1,7 @@
 /*
  Name:		MotorController.h
  Created:	8/11/2018 16:48:00
+ Edited:	8/11/2018 16:51:55
  Author:	Mads
  Purpose:	Interface definition for the motor controller.
 */

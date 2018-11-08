@@ -1,6 +1,7 @@
 /*
  Name:		SensorController.h
  Created:	8/11/2018 16:46:33
+ Edited:	8/11/2018 16:52:33
  Author:	Mads
  Purpose:	Interface definition for the sensor controller.
 */

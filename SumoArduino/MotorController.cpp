@@ -1,6 +1,7 @@
 /*
  Name:		MotorController.cpp
  Created:	8/11/2018 16:48:32
+ Edited:	8/11/2018 16:53:00
  Author:	Mads
  Purpose:	Interface implementation for the motor controller.
 */
