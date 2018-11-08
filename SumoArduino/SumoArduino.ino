@@ -1,20 +1,22 @@
-//When DEBUG is 1 the Arduino sends serial data using the Print macros.
-//When its 0 the Print macros are just noops.
-#define DEBUG 1
-
-#include <Servo.h>
-#include <SensorController.h>
-#include <MotorController.h>
-#include "Util.h"
-
 /*
  Name:		SumoArduino.ino
  Created:	9/25/2018 7:37:38 PM
  Author:	Mads
 */
 
+//When DEBUG is 1 the Arduino sends serial data using the Print macros.
+//When its 0 the Print macros are just noops.
+#define DEBUG 1
 
-SensorController controller(3, 4, 5);
+#include <Servo.h> //Not used here, but deep library search fails if its not included.
+#include <SensorController.h>
+#include <MotorController.h>
+#include "Util.h"
+#include "Pins.h"
+
+
+
+SensorController sensorController(Pins::SERVO, Pins::ECHO, Pins::TRIGGER);
 
 
 // the setup function runs once when you press reset or power the board
@@ -23,7 +25,7 @@ void setup() {
 
 	InitializeSerial(115200);
 	Println("Begin program");
-	controller.Begin(motorController);
+	sensorController.Begin(motorController);
 	motorController->Begin();
 	//motorController.Rotate(MotorController::DELAY_15_CONSTANT, false);
 	motorController->Start();

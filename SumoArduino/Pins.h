@@ -5,9 +5,9 @@ namespace Pins
 {
 	//Sensor pins
 
-	constexpr uint8_t SERVO = 0;
-	constexpr uint8_t ECHO = 0;
-	constexpr uint8_t TRIGGER = 0;
+	constexpr uint8_t SERVO = 3;
+	constexpr uint8_t ECHO = 4;
+	constexpr uint8_t TRIGGER = 5;
 
 
 	//Trip pins
