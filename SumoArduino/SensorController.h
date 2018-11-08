@@ -1,3 +1,9 @@
+/*
+ Name:		SensorController.h
+ Created:	8/11/2018 16:46:33
+ Author:	Mads
+ Purpose:	Interface definition for the sensor controller.
+*/
 #pragma once
 
 #include <Arduino.h>

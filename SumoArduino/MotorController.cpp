@@ -1,3 +1,10 @@
+/*
+ Name:		MotorController.cpp
+ Created:	8/11/2018 16:48:32
+ Author:	Mads
+ Purpose:	Interface implementation for the motor controller.
+*/
+
 #include "MotorController.h"
 
 

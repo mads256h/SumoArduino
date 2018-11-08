@@ -1,3 +1,10 @@
+/*
+ Name:		SensorController.cpp
+ Created:	8/11/2018 16:47:16
+ Author:	Mads
+ Purpose:	Interface implementation for the sensor controller.
+*/
+
 #include "SensorController.h"
 #include <Servo.h>
 #include "Util.h"
@@ -6,7 +13,6 @@
 void SensorController::MotorATripInterrupt()
 {
 	MotorATripCounter++;
-	//Println("Motor1");
 }
 
 void SensorController::MotorBTripInterrupt()

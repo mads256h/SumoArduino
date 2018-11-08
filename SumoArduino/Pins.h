@@ -1,3 +1,10 @@
+/*
+ Name:		Pins.h
+ Created:	8/11/2018 16:50:10
+ Author:	Mads
+ Purpose:	Defines pin constants.
+*/
+
 #pragma once
 
 //Namespace that encapsulates the pins used in the program
@@ -18,10 +25,10 @@ namespace Pins
 
 	//Motor pins
 
-	constexpr uint8_t MOTORA_CONTROL1 = 0;
-	constexpr uint8_t MOTORA_CONTROL2 = 0;
+	constexpr uint8_t MOTORA_CONTROL1 = 8;
+	constexpr uint8_t MOTORA_CONTROL2 = 9;
 
-	constexpr uint8_t MOTORB_CONTROL1 = 0;
-	constexpr uint8_t MOTORB_CONTROL2 = 0;
+	constexpr uint8_t MOTORB_CONTROL1 = 10;
+	constexpr uint8_t MOTORB_CONTROL2 = 11;
 	
 }

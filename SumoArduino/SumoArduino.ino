@@ -1,7 +1,8 @@
 /*
  Name:		SumoArduino.ino
- Created:	9/25/2018 7:37:38 PM
+ Created:	25/9/2018 7:37:38
  Author:	Mads
+ Purpose:	Program entrypoint
 */
 
 //When DEBUG is 1 the Arduino sends serial data using the Print macros.
@@ -22,7 +23,8 @@ SensorController sensorController(Pins::SERVO, Pins::ECHO, Pins::TRIGGER);
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	const MotorController* const motorController = new MotorController(9, 8, 10, 11);
+	const MotorController* const motorController = 
+		new MotorController(Pins::MOTORA_CONTROL1, Pins::MOTORA_CONTROL2, Pins::MOTORB_CONTROL1, Pins::MOTORB_CONTROL2);
 
 	InitializeSerial(115200);
 	Println("Begin program");

@@ -1,3 +1,10 @@
+/*
+ Name:		MotorController.h
+ Created:	8/11/2018 16:48:00
+ Author:	Mads
+ Purpose:	Interface definition for the motor controller.
+*/
+
 #pragma once
 #include <Arduino.h>
 

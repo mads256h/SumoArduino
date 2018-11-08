@@ -1,3 +1,10 @@
+/*
+ Name:		Util.h
+ Created:	8/11/2018 16:50:39
+ Author:	Mads
+ Purpose:	Defines utility macros and functions.
+*/
+
 #pragma once
 #include <Arduino.h>
 
