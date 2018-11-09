@@ -38,6 +38,6 @@ void loop() {
 	PRINTLN(SensorController::MotorBTripCounter);
 	//Serial.println(digitalRead(2));
 	//Serial.println(digitalRead(3));
-	//controller.Loop();
+	sensorController.Loop();
 	
 }

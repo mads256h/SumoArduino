@@ -55,10 +55,10 @@ uint32_t SensorController::ReadDistance(const unsigned long timeout) const
 
 void SensorController::Loop()
 {
-	if (Angle < 10)
+	if (Angle < 20)
 		ClockWise = false;
 
-	if (Angle > 170)
+	if (Angle > 160)
 		ClockWise = true;
 
 	_servo.write(Angle);
