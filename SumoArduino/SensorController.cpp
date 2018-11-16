@@ -55,6 +55,17 @@ uint32_t SensorController::ReadDistance(const unsigned long timeout) const
 
 void SensorController::Loop()
 {
+	if (analogRead(Pins::INFRA_BOTTOM) < 10)
+	{
+		_motor->Forward();
+		return;
+	}
+	if (analogRead(Pins::INFRA_TOP_LEFT) < 10 || analogRead(Pins::INFRA_TOP_RIGHT) < 10)
+	{
+		_motor->Backwards();
+		return;
+	}
+
 	if (Angle < 20)
 		ClockWise = false;
 

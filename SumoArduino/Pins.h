@@ -25,12 +25,9 @@ namespace Pins
 
 	//Infrared sensors
 
-	constexpr uint8_t INFRA_TOP_LEFT = 0;
-	constexpr uint8_t INFRA_TOP_RIGHT = 0;
-	constexpr uint8_t INFRA_LEFT = 0;
-	constexpr uint8_t INFRA_RIGHT = 0;
-	constexpr uint8_t INFRA_BOTTOM_LEFT = 0;
-	constexpr uint8_t INFRA_BOTTOM_RIGHT = 0;
+	constexpr uint8_t INFRA_TOP_LEFT = A2;
+	constexpr uint8_t INFRA_TOP_RIGHT = A1;
+	constexpr uint8_t INFRA_BOTTOM = A0;
 
 
 	//Motor pins
