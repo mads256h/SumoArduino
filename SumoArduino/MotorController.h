@@ -56,4 +56,5 @@ public:
 
 	//Rotate the vehicle by an angle.
 	void Rotate(int16_t angle) const;
+	void RotateTrip(uint32_t waitTrips, bool right = false) const;
 };

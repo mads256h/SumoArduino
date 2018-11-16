@@ -66,20 +66,33 @@ void SensorController::Loop()
 		return;
 	}
 
-	if (Angle < 20)
+	if (Angle < MinAngle)
+	{
 		ClockWise = false;
+		Sweeps++;
+	}
 
-	if (Angle > 160)
+	if (Angle > MaxAngle)
+	{
 		ClockWise = true;
+		Sweeps++;
+	}
+
+	if (Sweeps >= 3)
+	{
+		_motor->Rotate(90);
+		Sweeps = 0;
+		Angle = 90;
+	}
 
 	_servo.write(Angle);
 
 
 	const auto distance = ReadDistance();
-	//Serial.println(distance);
 	if (distance < 2800 && distance != 0)
 	{
-		if (Angle < 100 && Angle > 80)
+		Sweeps = 0;
+		if (Angle < 95 && Angle > 85)
 		{
 			_motor->Forward();
 			delay(60);
@@ -97,10 +110,10 @@ void SensorController::Loop()
 
 
 	if (!ClockWise)
-		Angle += 10;
+		Angle += AngleStep;
 
 	if (ClockWise)
-		Angle -= 10;
+		Angle -= AngleStep;
 
 }
 

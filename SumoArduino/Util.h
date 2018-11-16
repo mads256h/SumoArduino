@@ -9,6 +9,8 @@
 #pragma once
 #include <Arduino.h>
 
+#define DEBUG 0
+
 #if DEBUG
 #define INITIALIZE_SERIAL(i) Serial.begin(i)
 #define PRINT(t) Serial.print(t)

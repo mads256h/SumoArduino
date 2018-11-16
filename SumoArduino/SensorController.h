@@ -17,6 +17,13 @@
 class SensorController
 {
 private:
+	//Constants
+	constexpr static uint8_t MinAngle = 60;
+	constexpr static uint8_t MaxAngle = 180 - MinAngle;
+
+	constexpr static uint8_t AngleStep = 5;
+
+
 	//Pin for the servo motor.
 	const uint8_t _servoPin;
 
@@ -47,6 +54,7 @@ public:
 
 	//The current angle of the sensor.
 	uint8_t Angle;
+	uint8_t Sweeps;
 
 	//Constructs a SensorController object it takes servo
 	//and ultra sonic sensor pins.

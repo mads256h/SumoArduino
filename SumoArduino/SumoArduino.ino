@@ -5,7 +5,6 @@
 // Purpose: Program entrypoint.
 // Made by Gruppe 5: Mads Bluhme, Frederik Schultz & Mads Beyer Mogensen
 
-#define DEBUG 1
 
 // ReSharper disable once CppUnusedIncludeDirective
 #include <Servo.h> //Not used here, but deep library search fails if its not included.
@@ -30,6 +29,8 @@ void setup() {
 	motorController->Begin();
 	//motorController.Rotate(MotorController::DELAY_15_CONSTANT, false);
 	motorController->Start();
+	//motorController->RotateTrip(15, true);
+	//motorController->Rotate(-90);
 }
 
 // the loop function runs over and over again until power down or reset

@@ -8,7 +8,8 @@
 
 
 #include "MotorController.h"
-
+#include "SensorController.h"
+#include "Util.h"
 
 MotorController::MotorController(const uint8_t motorAControl1Pin, const uint8_t motorAControl2Pin, const uint8_t motorBControl1Pin, const uint8_t motorBControl2Pin)
 	: _motorAControl1Pin(motorAControl1Pin), _motorAControl2Pin(motorAControl2Pin), _motorBControl1Pin(motorBControl1Pin), _motorBControl2Pin(motorBControl2Pin)
@@ -86,20 +87,60 @@ void MotorController::Rotate(const int16_t angle) const
 {
 	if (angle > 0)
 	{
-		digitalWrite(_motorAControl1Pin, LOW);
-		digitalWrite(_motorAControl2Pin, HIGH);
-		digitalWrite(_motorBControl1Pin, HIGH);
-		digitalWrite(_motorBControl2Pin, LOW);
-		delay(17.123 * pow(angle, 0.6494));
+		RotateTrip(angle / 6, true);
 		Brake();
 	}
 	else
+	{
+		RotateTrip((angle * -1) / 6, false);
+		Brake();
+	}
+}
+
+void MotorController::RotateTrip(uint32_t waitTrips, bool right) const
+{
+	auto oldMotorATrip = SensorController::MotorATripCounter;
+	auto oldMotorBTrip = SensorController::MotorBTripCounter;
+	if (right)
 	{
 		digitalWrite(_motorAControl1Pin, HIGH);
 		digitalWrite(_motorAControl2Pin, LOW);
 		digitalWrite(_motorBControl1Pin, LOW);
 		digitalWrite(_motorBControl2Pin, HIGH);
-		delay(17.123 * pow(abs(angle), 0.6494));
-		Brake();
+	}
+	else
+	{
+		digitalWrite(_motorAControl1Pin, LOW);
+		digitalWrite(_motorAControl2Pin, HIGH);
+		digitalWrite(_motorBControl1Pin, HIGH);
+		digitalWrite(_motorBControl2Pin, LOW);
+	}
+
+
+	while (true)
+	{
+		PRINTLN(SensorController::MotorATripCounter - oldMotorATrip);
+		PRINTLN(SensorController::MotorBTripCounter - oldMotorBTrip);
+
+		bool motorAComplete = false;
+		bool motorBComplete = false;
+
+		if (SensorController::MotorATripCounter - oldMotorATrip >= waitTrips)
+		{
+			//Brake Motor A
+			digitalWrite(_motorAControl1Pin, HIGH);
+			digitalWrite(_motorAControl2Pin, HIGH);
+			motorAComplete = true;
+		}
+
+		if (SensorController::MotorBTripCounter - oldMotorBTrip >= waitTrips)
+		{
+			digitalWrite(_motorBControl1Pin, HIGH);
+			digitalWrite(_motorBControl2Pin, HIGH);
+			motorBComplete = true;
+		}
+
+		if (motorAComplete && motorBComplete)
+			break;
 	}
 }
