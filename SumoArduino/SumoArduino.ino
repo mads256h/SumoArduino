@@ -28,6 +28,7 @@ void setup() {
 	sensorController.Begin(motorController);
 	motorController->Begin();
 	//motorController.Rotate(MotorController::DELAY_15_CONSTANT, false);
+	delay(2500);
 	motorController->Start();
 	//motorController->RotateTrip(15, true);
 	//motorController->Rotate(-90);

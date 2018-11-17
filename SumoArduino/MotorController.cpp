@@ -28,7 +28,7 @@ void MotorController::Begin() const
 void MotorController::Start() const
 {
 	Forward();
-	delay(250);
+	delay(50);
 	Brake();
 	delay(175);
 	Rotate(180);
@@ -87,12 +87,12 @@ void MotorController::Rotate(const int16_t angle) const
 {
 	if (angle > 0)
 	{
-		RotateTrip(angle / 6, true);
+		RotateTrip(angle / 6, false);
 		Brake();
 	}
 	else
 	{
-		RotateTrip((angle * -1) / 6, false);
+		RotateTrip((angle * -1) / 6, true);
 		Brake();
 	}
 }
