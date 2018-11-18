@@ -21,8 +21,12 @@ private:
 	constexpr static uint8_t MinAngle = 60;
 	constexpr static uint8_t MaxAngle = 180 - MinAngle;
 
+	constexpr static uint8_t MinForwardAngle = 85;
+	constexpr static uint8_t MaxForwardAngle = 180 - MinForwardAngle;
+
 	constexpr static uint8_t AngleStep = 5;
 
+	constexpr static int16_t MaxBlackValue = 10;
 
 	//Pin for the servo motor.
 	const uint8_t _servoPin;
@@ -54,6 +58,8 @@ public:
 
 	//The current angle of the sensor.
 	uint8_t Angle;
+
+	//The amount of times the sensor has completed a turn without seeing anything
 	uint8_t Sweeps;
 
 	//Constructs a SensorController object it takes servo

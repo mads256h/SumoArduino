@@ -55,12 +55,12 @@ uint32_t SensorController::ReadDistance(const unsigned long timeout) const
 
 void SensorController::Loop()
 {
-	if (analogRead(Pins::INFRA_BOTTOM) < 10)
+	if (analogRead(Pins::INFRA_BOTTOM) < MaxBlackValue)
 	{
 		_motor->Forward();
 		return;
 	}
-	if (analogRead(Pins::INFRA_TOP_LEFT) < 10 || analogRead(Pins::INFRA_TOP_RIGHT) < 10)
+	if (analogRead(Pins::INFRA_TOP_LEFT) < MaxBlackValue || analogRead(Pins::INFRA_TOP_RIGHT) < MaxBlackValue)
 	{
 		_motor->Backwards();
 		return;
@@ -92,7 +92,7 @@ void SensorController::Loop()
 	if (distance < 2800 && distance != 0)
 	{
 		Sweeps = 0;
-		if (Angle < 95 && Angle > 85)
+		if (Angle < MaxForwardAngle && Angle > MinForwardAngle)
 		{
 			_motor->Forward();
 			delay(60);
@@ -109,11 +109,10 @@ void SensorController::Loop()
 	delay(60);
 
 
-	if (!ClockWise)
-		Angle += AngleStep;
-
 	if (ClockWise)
 		Angle -= AngleStep;
+	else
+		Angle += AngleStep;
 
 }
 

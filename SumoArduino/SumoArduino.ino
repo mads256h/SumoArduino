@@ -14,7 +14,7 @@
 #include "Pins.h"
 
 
-
+//Create a global sensorController object
 SensorController sensorController(Pins::SERVO, Pins::ECHO, Pins::TRIGGER);
 
 
@@ -27,19 +27,15 @@ void setup() {
 	PRINTLN("Begin program");
 	sensorController.Begin(motorController);
 	motorController->Begin();
-	//motorController.Rotate(MotorController::DELAY_15_CONSTANT, false);
-	delay(2500);
-	motorController->Start();
-	//motorController->RotateTrip(15, true);
-	//motorController->Rotate(-90);
+
+	delay(2500); //Contributes to the required 3 seconds start delay
+	motorController->Start(); //Starts the drive forward and rotate 180 degrees procedure
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
 	PRINTLN(SensorController::MotorATripCounter);
 	PRINTLN(SensorController::MotorBTripCounter);
-	//Serial.println(digitalRead(2));
-	//Serial.println(digitalRead(3));
-	sensorController.Loop();
-	
+
+	sensorController.Loop(); //Loop the sensorController
 }

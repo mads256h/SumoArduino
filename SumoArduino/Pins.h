@@ -7,6 +7,7 @@
 
 
 #pragma once
+#include <Arduino.h>
 
 //Namespace that encapsulates the pins used in the program
 namespace Pins
@@ -22,6 +23,7 @@ namespace Pins
 
 	constexpr uint8_t MOTOR1_TRIP = 2;
 	constexpr uint8_t MOTOR2_TRIP = 3;
+
 
 	//Infrared sensors
 

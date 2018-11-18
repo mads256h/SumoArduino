@@ -9,6 +9,7 @@
 #pragma once
 #include <Arduino.h>
 
+//If debug is on we print debug information on the serial port.
 #define DEBUG 0
 
 #if DEBUG
